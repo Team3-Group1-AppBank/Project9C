@@ -3,7 +3,7 @@ pipeline{
   stages{
     stage('git-clone'){
      steps{
-        checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'team3hook', url: 'https://github.com/topsicle1/EnforcedMultibranch.git']]])
+        checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'team3hook', url: 'https://github.com/Team3-Group1-AppBank/Project9C.git']]])
      
 
      }
