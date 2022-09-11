@@ -1,42 +1,105 @@
 pipeline{
   agent any
   stages{
+    
     stage('git-clone'){
-     steps{
-        checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'team3hook', url: 'https://github.com/Team3-Group1-AppBank/Project9C.git']]])
-     
-
-     }
+    	steps{
+        checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'team3hook', url: 'https://github.com/topsicle1/EnforcedMultibranch.git']]])
+    	
+    	}
     }
-        stage('Feature Branch Deploy Code') {
+     stage('Feature Branch Deploy Code') {
             when {
                 branch 'feature'
             }
-            steps {
-                sh 'echo "Building Artifact from Feature branch"'
-                sh 'echo "Deploying Code from Feature branch"'
-           }
+
+      parallel{
+        stage('actions1'){
+          steps{
+            sh 'pwd'
+          }
         }
-        stage('Develop Branch Deploy Code') {
-           when {
+        stage('actions2'){
+          steps{
+            sh 'lscpu'
+          }
+        }
+            stage('actions7'){
+          steps{
+            sh 'lscpu'
+          }
+
+        }
+            stage('actions8'){
+          steps{
+            sh 'lscpu'
+          }
+        }
+      }
+    }
+   
+     
+   stage('Develop Branch Deploy Code') {
+            when {
                 branch 'develop'
-            }
-            steps {
-                sh 'echo "Building Artifact from Develop branch"'
-                sh 'echo "Deploying Code from Develop branch"'
-           }
+            }  
+  
+      parallel{
+        stage('actions3'){
+          steps{
+            sh 'pwd'
+          }
+
         }
-        
-      stage('Main Branch Deploy Code') {
+        stage('actions4'){
+          steps{
+            sh 'lscpu'
+          }
+        }
+                 stage('actions7'){
+          steps{
+            sh 'lscpu'
+          }
+        }
+            stage('actions8'){
+
+          steps{
+            sh 'lscpu'
+          }
+        }
+      }
+    }
+    
+     stage('Main Branch Deploy Code') {
             when {
                 branch 'main'
-            }
-            steps {
-                sh 'echo "Building Artifact from Main branch"'
-                sh 'echo "Deploying Code from Main branch"'
-            }
+            }  
+  
+      parallel{
+        stage('actions5'){
+          steps{
+            sh 'pwd'
+          }
+        }
+        stage('actions6'){
+          steps{
+            sh 'lscpu'
+          }
         }
 
-    }
+                 stage('actions7'){
+          steps{
+            sh 'lscpu'
+          }
+        }
+            stage('actions8'){
+          steps{
+            sh 'lscpu'
+          }
+        }
 
-}
+      }
+    }
+  }
+}   
+ 
